@@ -111,8 +111,8 @@ public class SwipeListDemoTest {
 
         Utilities.waitFor(1);
 
-        driver.findElement(MobileBy.AndroidUIAutomator(
-                "new UiScrollable(scrollable(true)).scrollToBeginning(10)"));
+        driver.findElementByAndroidUIAutomator(
+                "new UiScrollable(scrollable(true)).scrollToBeginning(10)");
     }
 
     @Test
