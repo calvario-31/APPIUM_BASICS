@@ -97,8 +97,7 @@ public class SauceLabsTest {
         String description = "test-standard_user";
 
         AndroidElement usernameLabel = driver.findElementByAndroidUIAutomator(
-                "new UiScrollable(scrollable(true))" +
-                        ".scrollIntoView(description(\"" + description + "\"))");
+                "new UiScrollable(scrollable(true)).scrollIntoView(description(\"" + description + "\"))");
 
         //encontramos el hijo de ese elemento que es el que alberga el texto
         String username = usernameLabel.findElement(By.className("android.widget.TextView")).getText();
