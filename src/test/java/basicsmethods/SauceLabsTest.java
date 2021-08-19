@@ -4,6 +4,8 @@ import io.appium.java_client.MobileBy;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -90,7 +92,50 @@ public class SauceLabsTest {
     }
 
     @Test
-    public void generalSwipe(){
+    public void scrollIntoDescriptionTest(){
+        //scrolleamos hasta el elemento con accessibility id: test-standard-user
+        String description = "test-standard_user";
+
+        AndroidElement usernameLabel = driver.findElementByAndroidUIAutomator(
+                "new UiScrollable(scrollable(true))" +
+                        ".scrollIntoView(description(\"" + description + "\"))");
+
+        //encontramos el hijo de ese elemento que es el que alberga el texto
+        String username = usernameLabel.findElement(By.className("android.widget.TextView")).getText();
+        //mostramos el texto en pantalla
+        System.out.println(username);
+    }
+
+    @Test
+    public void pressBackAndHomeTest(){
+        //nos logueamos
+        By inputUsername = MobileBy.AccessibilityId("test-Username");
+        By inputPassword = MobileBy.AccessibilityId("test-Password");
+        By buttonLogin = MobileBy.AccessibilityId("test-LOGIN");
+        By burgerMenu = MobileBy.AccessibilityId("test-Menu");
+
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(inputUsername)).sendKeys("standard_user");
+        driver.findElement(inputPassword).sendKeys("secret_sauce");
+        driver.findElement(buttonLogin).click();
+
+        //esperamos que cargue la pantalla de compras
+        wait.until(ExpectedConditions.visibilityOfElementLocated(burgerMenu));
+
+        //press back: igual que presionar atrás en el celular
+        driver.pressKey(new KeyEvent(AndroidKey.BACK));
+
+        Utilities.waitFor(3);
+
+        //press home: igual que presionar home en el celular
+        driver.pressKey(new KeyEvent(AndroidKey.HOME));
+
+        Utilities.waitFor(3);
+    }
+
+    @Test
+    public void generalSwipeTest(){
         //vamos a la pantalla de dibujo
         By inputUsername = MobileBy.AccessibilityId("test-Username");
         By inputPassword = MobileBy.AccessibilityId("test-Password");
