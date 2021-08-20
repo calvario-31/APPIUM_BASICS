@@ -82,7 +82,7 @@ public class SwipeListDemoTest {
 
         String text = "Calendar";
         driver.findElementByAndroidUIAutomator(
-                "new UiScrollable(scrollable(true)).scrollIntoView(text(\"" + text + "\"))");
+                "UiScrollable(scrollable(true)).scrollIntoView(text(\"" + text + "\"))");
 
         Utilities.waitFor(3);
     }
@@ -97,7 +97,7 @@ public class SwipeListDemoTest {
 
         String subText = "Transfer Tool";
         driver.findElementByAndroidUIAutomator(
-                "new UiScrollable(scrollable(true)).scrollIntoView(textContains(\"" + subText + "\"))");
+                "UiScrollable(scrollable(true)).scrollIntoView(textContains(\"" + subText + "\"))");
 
         Utilities.waitFor(3);
     }
@@ -106,8 +106,7 @@ public class SwipeListDemoTest {
     public void swipeToTopTest(){
         String text = "System UI";
         driver.findElementByAndroidUIAutomator(
-                "new UiScrollable(scrollable(true))" +
-                        ".scrollIntoView(text(\"" + text + "\"))");
+                "UiScrollable(scrollable(true)).scrollIntoView(text(\"" + text + "\"))");
 
         Utilities.waitFor(1);
 
