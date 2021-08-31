@@ -26,22 +26,23 @@ import static java.time.Duration.ofSeconds;
 
 public class SwipeListDemoTest {
     private AndroidDriver<AndroidElement> driver;
+
     @BeforeMethod
-    public void beforeMethod(){
+    public void beforeMethod() {
         //configuramos el driver
         String APPIUM_URL_SERVER = "http://localhost:4723/wd/hub";
 
         File fileAPK = new File("src/main/resources/apk/swipeListDemo.apk");
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("autoGrantPermissions",true);
+        capabilities.setCapability("autoGrantPermissions", true);
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "android_emulator");
         capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
         capabilities.setCapability(MobileCapabilityType.APP, fileAPK.getAbsolutePath());
 
-        try{
+        try {
             driver = new AndroidDriver<>(new URL(APPIUM_URL_SERVER), capabilities);
-        }catch (Exception e){
+        } catch (Exception e) {
             driver = null;
         }
 
@@ -51,7 +52,7 @@ public class SwipeListDemoTest {
     }
 
     @Test
-    public void longPressTest(){
+    public void longPressTest() {
         //hacemos long press en el primer elemento
         List<AndroidElement> listElements = driver.findElements(
                 MobileBy.id("com.fortysevendeg.android.swipelistview:id/front"));
@@ -73,7 +74,7 @@ public class SwipeListDemoTest {
     }
 
     @Test
-    public void scrollIntoTextTest(){
+    public void scrollIntoTextTest() {
         /*
         scroll into text
         apreciamos que hay que pasarle el texto exacto a donde hay que hacer scroll
@@ -88,7 +89,7 @@ public class SwipeListDemoTest {
     }
 
     @Test
-    public void scrollIntoTextContainsTest(){
+    public void scrollIntoTextContainsTest() {
         /*
         scroll into text contains (hacer scroll hasta un view que tenga una parte del texto especificado)
         apreciamos que hay que pasarle parte del texto a donde hay que hacer scroll
@@ -103,7 +104,7 @@ public class SwipeListDemoTest {
     }
 
     @Test
-    public void swipeToTopTest(){
+    public void swipeToTopTest() {
         String text = "System UI";
         driver.findElementByAndroidUIAutomator(
                 "UiScrollable(scrollable(true)).scrollIntoView(text(\"" + text + "\"))");
@@ -115,7 +116,7 @@ public class SwipeListDemoTest {
     }
 
     @Test
-    public void verticalSwipeTest(){
+    public void verticalSwipeTest() {
         /*
             vertical swipe
             de esta manera hacemos un swipe vertical de un punto a otro con base en porcentajes
@@ -144,7 +145,7 @@ public class SwipeListDemoTest {
     }
 
     @Test
-    public void horizontalSwipeTest(){
+    public void horizontalSwipeTest() {
         /*
             horizontal swipe
             de esta manera hacemos un swipe horizontal de un punto a otro con base en porcentajes
@@ -172,8 +173,8 @@ public class SwipeListDemoTest {
     }
 
     @AfterMethod
-    public void afterMethod(){
-        if(driver != null){
+    public void afterMethod() {
+        if (driver != null) {
             driver.quit();
         }
     }

@@ -30,29 +30,29 @@ public class SauceLabsTest {
     private AndroidDriver<AndroidElement> driver;
 
     @BeforeMethod
-    public void beforeMethod(){
+    public void beforeMethod() {
         //configuramos el driver
         String APPIUM_URL_SERVER = "http://localhost:4723/wd/hub";
 
         File fileAPK = new File("src/main/resources/apk/sauceLabs.apk");
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("autoGrantPermissions",true);
+        capabilities.setCapability("autoGrantPermissions", true);
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "android_emulator");
         capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
-        capabilities.setCapability("appWaitActivity","com.swaglabsmobileapp.MainActivity");
+        capabilities.setCapability("appWaitActivity", "com.swaglabsmobileapp.MainActivity");
         capabilities.setCapability(MobileCapabilityType.APP, fileAPK.getAbsolutePath());
 
-        try{
+        try {
             driver = new AndroidDriver<>(new URL(APPIUM_URL_SERVER), capabilities);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             driver = null;
         }
     }
 
     @Test
-    public void singleTapTest(){
+    public void singleTapTest() {
         /*
         single tap
         Especificamos el elemento de tipo AndroidElement
@@ -66,14 +66,14 @@ public class SauceLabsTest {
 
         new TouchAction<>(driver)
                 .tap(tapOptions()
-                .withElement(element(buttonLogin)))
+                        .withElement(element(buttonLogin)))
                 .perform();
 
         Utilities.waitFor(5);
     }
 
     @Test
-    public void sendKeysClickTest(){
+    public void sendKeysClickTest() {
         /*
         sendKeys: igual que selenium, sirve para escribir texto
         click: hace click en el botón en el medio de este
@@ -92,7 +92,7 @@ public class SauceLabsTest {
     }
 
     @Test
-    public void scrollIntoDescriptionTest(){
+    public void scrollIntoDescriptionTest() {
         //scrolleamos hasta el elemento con accessibility id: test-standard-user
         String description = "test-standard_user";
 
@@ -106,7 +106,7 @@ public class SauceLabsTest {
     }
 
     @Test
-    public void pressBackAndHomeTest(){
+    public void pressBackAndHomeTest() {
         //nos logueamos
         By inputUsername = MobileBy.AccessibilityId("test-Username");
         By inputPassword = MobileBy.AccessibilityId("test-Password");
@@ -134,7 +134,7 @@ public class SauceLabsTest {
     }
 
     @Test
-    public void generalSwipeTest(){
+    public void generalSwipeTest() {
         //vamos a la pantalla de dibujo
         By inputUsername = MobileBy.AccessibilityId("test-Username");
         By inputPassword = MobileBy.AccessibilityId("test-Password");
@@ -185,8 +185,8 @@ public class SauceLabsTest {
     }
 
     @AfterMethod
-    public void afterMethod(){
-        if(driver != null){
+    public void afterMethod() {
+        if (driver != null) {
             driver.quit();
         }
     }
