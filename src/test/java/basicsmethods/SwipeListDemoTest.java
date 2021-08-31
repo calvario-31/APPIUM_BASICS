@@ -96,7 +96,7 @@ public class SwipeListDemoTest {
         a su vez nos devuelve el elemento y podemos manipularlo luego
         */
 
-        String subText = "Transfer Tool";
+        String subText = "Live Wallpaper";
         driver.findElementByAndroidUIAutomator(
                 "UiScrollable(scrollable(true)).scrollIntoView(textContains(\"" + subText + "\"))");
 
