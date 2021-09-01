@@ -54,8 +54,8 @@ public class SwipeListDemoTest {
     @Test
     public void longPressTest() {
         //hacemos long press en el primer elemento
-        List<AndroidElement> listElements = driver.findElements(
-                MobileBy.id("com.fortysevendeg.android.swipelistview:id/front"));
+        By elementsLocators = MobileBy.id("com.fortysevendeg.android.swipelistview:id/front");
+        List<AndroidElement> listElements = driver.findElements(elementsLocators);
         AndroidElement firstElement = listElements.get(0);
         AndroidElement secondElement = listElements.get(1);
 
@@ -64,7 +64,8 @@ public class SwipeListDemoTest {
         apreciamos que hay que pasarle el elemento a presionar
         además de la duración, no olvidar de hacer release y perform
         */
-        new TouchAction<>(driver).longPress(longPressOptions()
+        new TouchAction<>(driver)
+                .longPress(longPressOptions()
                         .withElement(element(firstElement))
                         .withDuration(ofSeconds(3)))
                 .release()
@@ -81,7 +82,7 @@ public class SwipeListDemoTest {
         a su vez nos devuelve el elemento y podemos manipularlo luego
         */
 
-        String text = "Calendar";
+        String text = "Clock";
         driver.findElementByAndroidUIAutomator(
                 "UiScrollable(scrollable(true)).scrollIntoView(text(\"" + text + "\"))");
 

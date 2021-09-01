@@ -38,7 +38,7 @@ public class SauceLabsTest {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("autoGrantPermissions", true);
-        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "android_emulator");
+        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "mobile_emulator");
         capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
         capabilities.setCapability("appWaitActivity", "com.swaglabsmobileapp.MainActivity");
         capabilities.setCapability(MobileCapabilityType.APP, fileAPK.getAbsolutePath());
